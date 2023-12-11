@@ -1,5 +1,5 @@
 {% set name = "pytorch-metric-learning" %}
-{% set version = "2.3.0" %}
+{% set version = "1.7.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,19 +7,20 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytorch-metric-learning-{{ version }}.tar.gz
-  sha256: f6f0edec67a6601e175b62050f25ae2b38e3d31a450cbe4a563a8a81f1cab9bc
+  sha256: e742b36c167ea61e469d87f6e6c76224d7c0a6da9ddd2f22e5e09929f9b3a4b2
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
   number: 0
 
 requirements:
   host:
-    - python >=3.0
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >=3.0
+    - python
     - numpy
     - scikit-learn
     - tqdm
@@ -34,10 +35,14 @@ test:
     - pip
 
 about:
-  home: https://github.com/KevinMusgrave/pytorch-metric-learning
+  home: https://kevinmusgrave.github.io/pytorch-metric-learning/
   summary: The easiest way to use deep metric learning in your application. Modular, flexible, and extensible. Written in PyTorch.
+  description: This library contains 9 modules, each of which can be used independently within your existing codebase, or combined together for a complete train/test workflow.
   license: MIT
+  license_family: MIT
   license_file: LICENSE
+  doc_url: https://kevinmusgrave.github.io/pytorch-metric-learning/
+  dev_url: https://github.com/KevinMusgrave/pytorch-metric-learning
 
 extra:
   recipe-maintainers:
